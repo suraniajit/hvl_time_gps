@@ -1,0 +1,15 @@
+  #all ignore files
+/vendor/
+public
+/temp
+img
+temp
+# storage
+.env
+uploads
+.htaccess
+.well-known
+public_17_02_2023.zip
+error_log
+backup
+.ftpquota

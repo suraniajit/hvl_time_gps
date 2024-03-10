@@ -1,0 +1,16 @@
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\public\js\hrms\city\create.js
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\public\js\hrms\city\edit.js
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\routes\web.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\public\js\hvl\customermaster\create.js
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\public\js\hvl\customermaster\edit.js
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\app\Http\Controllers\hrms\CityController.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\app\Http\Controllers\hvl\customermaster\CustomerMasterController_temp.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\app\Models\hvl\CustomerMaster.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\app\Models\hrms\City.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\resources\views\hrms\city\edit.blade.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\resources\views\hrms\city\create.blade.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\resources\views\hrms\city\create.blade.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\resources\views\hvl\customermaster\create.blade.php
+C:\xampp_7.4.19\htdocs\web_project\HVL_Mar2024\resources\views\hvl\customermaster\edit.blade.php
+
+
