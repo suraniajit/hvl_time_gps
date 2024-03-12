@@ -4,7 +4,7 @@ public/vendor
 /temp
 img
 temp
-storage
+/storage
 .env
 uploads
 .htaccess

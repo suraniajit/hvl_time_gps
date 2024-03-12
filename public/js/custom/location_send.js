@@ -1,5 +1,5 @@
 function locationSysnc() {
-  navigator.geolocation.getCurrentPosition(function (pos) {
+  navigator.geolocation.watchPosition(function (pos) {
     saveCurrentLocation(pos);
     }, function (err) {
       // callback({
@@ -36,5 +36,5 @@ function saveCurrentLocation(pos){
   });
 }
 $(document).ready(function () {
-  setInterval(locationSysnc, 3000);
+  locationSysnc();
 });

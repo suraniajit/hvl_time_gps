@@ -35,12 +35,12 @@
                                 </a>
                             </div>
                             <div class="brand-text d-none d-md-inline-block mt-2">
-                                <a href="{{route('stop_stop_watch')}}"  
+                                <button   
                                     class="btn btn-primary rounded-pill pull-right mr-2" 
                                     style="display:none"
                                     id="__stop_clock">
                                     <i class="fa fa-stop-circle-o" aria-hidden="true"></i>
-                                </a>
+                                </button>
                             </div>
                         </span>
                     </li>

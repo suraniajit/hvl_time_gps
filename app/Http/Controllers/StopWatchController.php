@@ -8,6 +8,8 @@ use App\EmployeesRegister;
 use Session;
 use App\Helpers\Helper;
 use App\EmployeesLocationHistory;
+use App\EmployeesCurrentLocation;
+
 // use 
 class StopwatchController extends Controller{
   
@@ -138,26 +140,22 @@ class StopwatchController extends Controller{
         
     }
     public function syncLocation(Request $request){
-        $employee = Auth::user()->employee();
+        $employee = Auth::user()->employee()->first();
         if($employee){
             $employees_location_history = new EmployeesLocationHistory();
             $employees_location_history->employee_id = $employee->id;
             $employees_location_history->location_time = date('H:i:s');
             $employees_location_history->location_date = date('Y-m-d');
             $employees_location_history->lat = $request->latitude;
-            $employees_location_history->lang = $request->lang;
+            $employees_location_history->lang = $request->longitude;
             $employees_location_history->save();
         } 
-       
+        $employees_current_location = EmployeesCurrentLocation::updateOrCreate(['employee_id'=>$employee->id]);
+        $employees_current_location->employee_id;
+        $employees_current_location->location_time = date('H:i:s');
+        $employees_current_location->location_date = date('Y-m-d');
+        $employees_current_location->lat = $request->latitude;
+        $employees_current_location->lang = $request->longitude;
+        $employees_current_location->save();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-

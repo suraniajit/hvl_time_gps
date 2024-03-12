@@ -305,7 +305,7 @@
 {{-- page scripts --}}
 @section('page-script')
     <!-- for billing latlang -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}&callback=initAutocomplete&libraries=places&v=weekly" defer ></script>
+    <script  src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}&callback=initAutocomplete&libraries=places&v=weekly" defer ></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
         let autocomplete;

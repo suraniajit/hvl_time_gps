@@ -106,7 +106,7 @@
 {{-- page script --}}
 @section('page-script')
 <script src="{{asset('js/hrms/city/edit.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxKK1ePS2LinpV1r09ctx6rWLP6TLuW0s&callback=initAutocomplete&libraries=places&v=weekly" defer ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}&callback=initAutocomplete&libraries=places&v=weekly" defer ></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script>
         let autocomplete;

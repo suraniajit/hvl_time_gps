@@ -121,11 +121,29 @@ if($_is_employee_user){
         var url_for_location_share = "{{route('location_sync')}}";
     </script>    
     <script src="{{asset('js/custom/employee_login_time.js')}}"></script>
+    <script>
+        $('#__stop_clock').click(function(){
+            swal({
+                title: "Are you sure, you want to end your day? ",
+                text: "If yes, please confirm!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, confirm it!",
+                closeOnConfirm: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    window.location.href ="{{route('stop_stop_watch')}}";
+                }
+            });
+        })
+        
+    </script>   
     @if($current_running_task)
         <script>
                 var url_for_location_share = "{{route('location_sync')}}";
         </script>
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}"></script>
+        {{-- <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}"></script> --}}
         <script src="{{asset('js/custom/location_send.js')}}"></script>
     @endif
 @endif
