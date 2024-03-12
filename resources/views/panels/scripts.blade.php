@@ -16,9 +16,6 @@
 <script src="{{asset('js/custom/clock.js')}}"></script>
 
 <script>
-    $(document).ready(function () {
-        onclick="resetStopwatch()"
-    });
 </script>
 <!-- BEGIN THEME  JS-->
 <script src="{{asset('js/plugins.js')}}"></script>

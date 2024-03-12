@@ -10,6 +10,11 @@
 </style>
 @endsection
 @section('content')
+@php 
+$_auth_user_employee = Auth::user()->employee()->first();
+$_is_employee_user = ($_auth_user_employee)? true:false;         
+
+@endphp
 @php
     $Access_Job_Cards = false;
     $create_job_cards_permission = false;
@@ -75,8 +80,39 @@
     }
 @endphp
 
- 
-<section>
+<section class="activity_no_list_message" style="display:none">
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show center-block" role="alert">
+        <strong>{!! Session::get('success') !!} </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    @if($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show center-block" role="alert">
+            <strong>{{$error}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endforeach
+    @endif
+    
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-center h-100">
+            <div class="col-sm-12 col-md-6 text-center ">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded " style="margin-top: 40%">
+                    <div class="card-body">
+                        <h1>Please start your day to see a list of activities</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="activity_root_div" style="display:{{($_is_employee_user)?'none':'block'}}">
     <div class="container-fluid">
         <header>
             <div class="row">

@@ -1,15 +1,13 @@
   #all ignore files
 /vendor/
-public
+public/vendor
 /temp
 img
 temp
-# storage
+storage
 .env
 uploads
 .htaccess
 .well-known
-public_17_02_2023.zip
 error_log
-backup
 .ftpquota

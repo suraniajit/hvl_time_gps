@@ -9,6 +9,7 @@ class EmployeesRegister extends Model
         'employee_id',
         'start_time',
         'end_time',
+        'stop_day',
         'log_date',
     ];
 }

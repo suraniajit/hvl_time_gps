@@ -839,6 +839,10 @@ class ActivityMasterController extends Controller {
         $employees_array =  DB::table('employees')->pluck('Name','id')->toArray();
         $branchs = array();
         $customer_options = array();
+        // for today defualt today activity
+        if(((!isset($search_sdate)) || $search_sdate == null) && (!isset($search_edate) || $search_edate == null)){
+            $today_data= true;
+        }
 
         if ($em_id == 1 or $em_id == 122 or $em_id == 184) {
             $activity_details = DB::table('hvl_activity_master')

@@ -623,8 +623,11 @@ Route::post('google_drive/update/{id}', 'hvl\GoogleDrive\GoogleDriveContoller@up
     Route::get('system_log', 'SystemLogController@show')->name('system_log view');
 Route::get('system_log/detail/{id}', 'SystemLogController@detail')->name('system_log detail');
 // stop watch 
-Route::get('start_stop_watch', 'StopWatchController@startTime')->name('start_stop_watch');
-Route::get('stop_stop_watch', 'StopWatchController@stopTime')->name('stop_stop_watch');
+Route::get('start_stop_watch', 'StopWatchController@startDay')->name('start_stop_watch');
+Route::get('pause_stop_watch', 'StopWatchController@pauseDay')->name('pause_stop_watch');
+Route::get('stop_stop_watch', 'StopWatchController@stopDay')->name('stop_stop_watch');
+Route::get('get_today_time_counter/{employee_id}', 'StopWatchController@getTodayWorkingTime')->name('get_time_counter');
+Route::post('location_sync', 'StopWatchController@syncLocation')->name('location_sync');
 
 
 

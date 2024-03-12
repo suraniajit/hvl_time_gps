@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+
+        .center, .center-align {
+            text-align: center;
+        }
+
+        .card .card-content {
+            padding: 24px;
+            border-radius: 0 0 2px 2px;
+        }
+
+        .card .card-content p {
+            margin: 0;
+        }
+
+        .white-text {
+            color: #FFFFFF !important;
+        }
+
+        .black {
+            background-color: #000000 !important;
+        }
+        .btn, .btn-small, .btn-large {
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff4081;
+            text-align: center;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s ease-out;
+            cursor: pointer;
+        }
+        .btn, .btn-small, .btn-large, .btn-flat {
+            border: none;
+            border-radius: 4px;
+            display: inline-block;
+            height: 36px;
+            line-height: 36px;
+            padding: 0 2rem;
+            text-transform: uppercase;
+            vertical-align: middle;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .col .row {
+            margin-left: -0.75rem;
+            margin-right: -0.75rem;
+        }
+        .row {
+            margin-bottom: 0;
+        }
+        .row .col.s6 {
+            width: 50%;
+            margin-left: auto;
+            left: auto;
+            right: auto;
+        }
+        .row .col {
+            padding: 0 1rem;
+        }
+        .row .col {
+            float: left;
+            box-sizing: border-box;
+            min-height: 1px;
+        }
+        .row .col.s4 {
+            width: 33.3333333333%;
+            margin-left: auto;
+            left: auto;
+            right: auto;
+        }
+
+
+        h1 {
+            font-size: 4.2rem;
+            line-height: 110%;
+            margin: 2.1rem 0 1.68rem 0;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        h2 {
+            font-size: 3.56rem;
+            line-height: 110%;
+            margin: 1.78rem 0 1.424rem 0;
+        }
+        html{
+        color:black;
+        }
+    </style>
+</head>
+<body>

@@ -1,0 +1,75 @@
+const image_wrapper = document.getElementById("image-pad");
+const image_clearButton = image_wrapper.querySelector("[data-action=clear]");
+const image_changeColorButton = image_wrapper.querySelector("[data-action=change-color]");
+const image_changeWidthButton = image_wrapper.querySelector("[data-action=change-width]");
+const image_undoButton = image_wrapper.querySelector("[data-action=undo]");
+const image_saveJPGButton = image_wrapper.querySelector("[data-action=save-jpg]");
+const image_canvas = image_wrapper.querySelector("canvas");
+const image_pad = new ImagePad(image_canvas, {
+  backgroundColor: 'rgb(255, 255, 255)'
+});
+function resizeCanvas() {
+}
+window.onresize = resizeCanvas;
+resizeCanvas();
+
+function download(dataURL, filename) {
+  const blob = dataURLToBlob(dataURL);
+  var wavefilefromblob = new File([blob], 'filename.wav');
+  imageSendWavFiletoServer(wavefilefromblob);
+  image_pad.clear();
+}
+
+function isImage(url) {
+  return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+}
+function dataURLToBlob(dataURL) {
+  const parts = dataURL.split(';base64,');
+  const contentType = parts[0].split(":")[1];
+  const raw = window.atob(parts[1]);
+  const rawLength = raw.length;
+  const uInt8Array = new Uint8Array(rawLength);
+  for (let i = 0; i < rawLength; ++i) {
+    uInt8Array[i] = raw.charCodeAt(i);
+  }
+  return new Blob([uInt8Array], { type: contentType });
+}
+
+image_clearButton.addEventListener("click", () => {
+  image_pad.clear();
+});
+
+image_undoButton.addEventListener("click", () => {
+  const data = image_pad.toData();
+  if (data) {
+    data.pop(); 
+    image_pad.fromData(data);
+  }
+});
+
+
+image_changeColorButton.addEventListener("click", () => {
+  const r = Math.round(Math.random() * 255);
+  const g = Math.round(Math.random() * 255);
+  const b = Math.round(Math.random() * 255);
+  const color = "rgb(" + r + "," + g + "," + b +")";
+  image_pad.penColor = color;
+});
+
+image_changeWidthButton.addEventListener("click", () => {
+  const min = Math.round(Math.random() * 100) / 10;
+  const max = Math.round(Math.random() * 100) / 10;
+  alert(min);
+  alert(max);
+  image_pad.minWidth = Math.min(min, max);
+  image_pad.maxWidth = Math.max(min, max);
+});
+
+image_saveJPGButton.addEventListener("click", () => {
+  if (image_pad.isEmpty()) {
+    alert("Please provide a Mark first.");
+  } else {
+    const dataURL = image_pad.toDataURL("image/jpeg");
+    download(dataURL, "signature.jpg");
+  }
+});

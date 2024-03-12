@@ -1,15 +1,28 @@
 <?php
 use Illuminate\Support\Facades\DB;
 use App\Module; 
+use App\EmployeesRegister;
 
 $user_profile = DB::table('users')->where('id','=','122')->first();
-
-
 $profile_image = '/public/uploads/profile/' . $user_profile->profile_image;
 $business_logo = '/public/uploads/profile/' . $user_profile->business_logo;
 $background_images = '/public/uploads/profile/' . $user_profile->background_images;
 $copyrite = $user_profile->copyright_label;
 $displayname = $user_profile->displayname;
+$_auth_user_employee = Auth::user()->employee()->first();
+$_is_employee_user = ($_auth_user_employee)? true:false;
+$current_running_task = false;
+if($_is_employee_user){
+    $is_running_time = EmployeesRegister::where('employee_id',$_auth_user_employee->id)
+                        ->where('log_date',date('Y-m-d'))
+                        ->whereNotNull('start_time')
+                        ->where('stop_day',null)
+                        ->where('end_time',null)
+                        ->first();
+    if($is_running_time){
+        $current_running_task = true;
+    }
+}
 ?>
 <html class="loading" lang="en">
 <!-- BEGIN: Head-->
@@ -19,11 +32,9 @@ $displayname = $user_profile->displayname;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
     <title>@yield('title')</title>
     <link rel="icon" href="<?php echo $business_logo; ?>" type="image/x-icon"/>
     <link rel="shortcut icon" href="<?php echo $business_logo; ?>" type="image/x-icon"/>
-
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -50,62 +61,34 @@ $displayname = $user_profile->displayname;
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous"/>
-
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">-->
     <link rel="stylesheet" href="{{asset('css/datestyle.css')}}">
     <style>
         #load {
             width: 100%;
             height: 100%;
             position: fixed;
-            z-index: 9999;
-            
+            z-index: 9999;        
             background: url('<?php echo $business_logo; ?>') no-repeat rgba(255, 255, 255, 1) center ;
-
         }
-
     </style>
     @yield('vendor-style')
-
-
 </head>
-<!-- END: Head-->
-
 <body>
 <!-- BEGIN: SideNav-->
 @include('panels.sidebar')
 <!-- END: SideNav-->
-
 <!-- BEGIN: Page Main-->
-<div id="load">
-
-</div>
-<div id="contents">
-
-    <div class="page">
-    @include('panels.header-nav')
-
-    {{-- main page content  --}}
-
-
-    @yield('content')
-
-    {{--    @if($configData["isFabButton"] === true)--}}
-    {{--        @include('pages.sidebar.fab-menu')--}}
-    {{--    @endif--}}
-
-
-
-    <!-- END: Page Main-->
-
-        {{-- main footer  --}}
+<div id="load"></div>
+    <div id="contents">
+        <div class="page">
+        @include('panels.header-nav')
+        {{-- main page content  --}}
+        @yield('content')
         @include('panels.footer')
     </div>
-
 </div>
 <!--newchart js-->
 <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-base.min.js" type="text/javascript"></script>
-
 {{-- vendors and page scripts file   --}}
 <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -132,20 +115,23 @@ $displayname = $user_profile->displayname;
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
 <script src="{{asset('js/custom/clock.js')}}"></script>
+@if($_is_employee_user)
+    <script>
+        var url_for_getting_timing  = "{{route('get_time_counter',$_auth_user_employee->id)}}" ;
+        var url_for_location_share = "{{route('location_sync')}}";
+    </script>    
+    <script src="{{asset('js/custom/employee_login_time.js')}}"></script>
+    @if($current_running_task)
+        <script>
+                var url_for_location_share = "{{route('location_sync')}}";
+        </script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{env('GOOGLE_MAP_KEY')}}"></script>
+        <script src="{{asset('js/custom/location_send.js')}}"></script>
+    @endif
+@endif
 <script>
-        let hour = 00; 
-        let minute = 00; 
-        let second = 00; 
-        let count = 00;
-        $('#__start_clock').click(function (){
-            timer = true;  
-            stopWatch(); 
-        });
-        $('#__stop_clock').click(function (){
-            timer = false; 
-        });
+       
 </script>
-
 <script>
     document.onreadystatechange = function () {
         var state = document.readyState
@@ -159,7 +145,6 @@ $displayname = $user_profile->displayname;
             }, 1000);
         }
     }
-
     $(".logout").click(function () {
         var token = $("meta[name='csrf-token']").attr("content");
         swal({
@@ -183,18 +168,14 @@ $displayname = $user_profile->displayname;
             });
     });
      /*Developed by hitesh*/
-        var allowPaste = function(e){
-  e.stopImmediatePropagation();
-  return true;
-};
-document.addEventListener('paste', allowPaste, true);
-/*Developed by hitesh*/
-
+    var allowPaste = function(e){
+        e.stopImmediatePropagation();
+        return true;
+    };
+    document.addEventListener('paste', allowPaste, true);
+    /*Developed by hitesh*/
 </script>
-
+{{--end try --}}
 @yield('page-script')
-
-
 </body>
-
 </html>

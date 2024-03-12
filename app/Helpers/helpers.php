@@ -14,6 +14,7 @@ use App\Helpers\Filesystem;
 use App\SystemLog;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use DateTime;
 
 class Helper
 {
@@ -442,6 +443,14 @@ class Helper
         $activity_log->system_data = (isset($param['system_data']))?json_encode($param['system_data']):null;
         $activity_log->save();
     }
+    public function getTotalTime($start,$end){
+        $time1 = strtotime($start);
+        $time2 = strtotime($end);
+        return ($time2-$time1);
+    }
+
+
+
    
    
 
