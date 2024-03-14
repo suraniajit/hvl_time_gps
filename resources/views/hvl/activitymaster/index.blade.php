@@ -277,6 +277,9 @@ $_is_employee_user = ($_auth_user_employee)? true:false;
                                 </td>
                                 <td>{{$key+=1}}</td>
                                 <td>
+                                    @if($_is_employee_user)
+                                    <input type="hidden" class="google_direction_button" data-lat="{{$customer_lat_lang[$data->customer_id]['lat']}}" data-lng="{{$customer_lat_lang[$data->customer_id]['lng']}}" >
+                                    @endif
                                     @if($Read_Activity)
                                     <a href="{{ route('activity.show_activity', $data->id) }}"
                                        class="tooltipped mr-10"
@@ -556,6 +559,44 @@ $_is_employee_user = ($_auth_user_employee)? true:false;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 <script type="text/javascript" async="" src="{{asset('asset/signature_pad_proparty/ga.js.download')}}"></script>
 <!-- extenal excel file -->
+@if($_is_employee_user)
+<!--  this for google track button -->
+    <!-- end google track button-->
+    <script>
+    $(document).ready(function() {
+        getLocation(setDirectionButton);
+    });
+    function getLocation(callback) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            callback({
+                "latitude": pos.coords.latitude,
+                "longitude": pos.coords.longitude,
+                "status": 0,
+                "description": ""});
+        }, function (err) {
+            callback({
+                "latitude": 21.1702,//null
+                "longitude": 72.8311,//null,
+                "status": -1,
+                "description": `ERROR (${err.code}): ${err.message}`});
+        });
+    }
+    
+    function setDirectionButton(pos){
+        var elements = document.getElementsByClassName("google_direction_button");
+        for (var i = 0, len = elements.length; i < len; i++) {
+            var destination_lat = $(elements[i]).attr('data-lat'); 
+            var destination_lng = $(elements[i]).attr('data-lng');
+            if(!(destination_lat =='undefine' || destination_lng == 'undefine' || pos.latitude == 'undefine' || pos.longitude == 'undefine') ) {
+                $(elements[i]).parent().append("<a class='card-link' href='https://www.google.com/maps/dir/?api=1&origin="+pos.latitude+","+pos.longitude+"&destination="+destination_lat+","+destination_lng+"'><img height='30px' src='{{asset("img/directions.png")}}' height='50px' ></a>");
+            }
+        }
+    }
+
+
+    </script>
+@endif
+
 
 <!-- surani ajit forbackend excel download -->
 <script>

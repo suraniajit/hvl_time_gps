@@ -981,7 +981,8 @@ class ActivityMasterController extends Controller {
                 $customers = DB::table('hvl_customer_master')
                                 ->whereIn('hvl_customer_master.id', $db_customersIds)
                                 ->pluck('customer_name', 'id')->toArray();
-
+                
+                
                 $branchs = DB::table('hvl_customer_master')
                         ->join('Branch', 'Branch.id', '=', 'hvl_customer_master.branch_name')
                         ->whereIn('hvl_customer_master.id', $db_customersIds)
@@ -990,7 +991,7 @@ class ActivityMasterController extends Controller {
                         ->toArray();
             }
         }
-        $activity_ids = array_column($activity_details->toArray(), 'id');
+        // $activity_ids = array_column($activity_details->toArray(), 'id');
         $customer_code = DB::table('hvl_customer_master')
                         ->whereIn('hvl_customer_master.id', array_keys($customers))
                         ->pluck('customer_code', 'id')->toArray();
@@ -1058,8 +1059,19 @@ class ActivityMasterController extends Controller {
         ];
 
         $activity_status = DB::table('activitystatus')->pluck('Name', 'id')->toArray();
-
+        $customers_location = DB::table('hvl_customer_master')
+                // ->whereIn('id',$customers)
+                ->select('billing_latitude','billing_longitude', 'id')->get();
+        $customer_lat_lang = [];
+        foreach($customers_location as $lat_lang){
+            $customer_lat_lang[$lat_lang->id]['lat'] = $lat_lang->billing_latitude;
+            $customer_lat_lang[$lat_lang->id]['lng'] = $lat_lang->billing_longitude;
+        }
+        // echo "<pre>";
+        // print_r($customer_lat_lang);
+        // die;
         return view('hvl.activitymaster.index', [
+            'customer_lat_lang'=>$customer_lat_lang,
             'employees'=>$employees_array,
             'em_id' => $em_id,
             'details' => $activity_details,

@@ -69,6 +69,17 @@ $("#formValidate").validate({
             required: true,
 
         },
+        billing_location:{
+            required: true,
+        },
+        billing_latitude:{
+            required: true,
+        },
+        billing_longitude:{
+            required: true,
+        },
+        
+
         contact_person: {
             custome_required: true,
 
@@ -112,20 +123,6 @@ $("#formValidate").validate({
             custome_required: true,
 
         },
-        billing_location: {
-            required: true,
-
-        },
-        billing_latitude: {
-            required: true,
-
-        },
-        billing_longitude: {
-            required: true,
-
-        },
-        
-       
         shipping_state: {
             required: true,
 
@@ -161,16 +158,16 @@ $("#formValidate").validate({
     },
     messages: {
         employee_id: {
-            required: "Please select employee",
+            required: "Please Select Employee",
         },
         customer_name: {
-            required: "Pelase enter customer name",
+            required: "Pelase Enter Customer Name",
         },
         customer_code: {
-            required: "Pelase enter customer code",
+            required: "Pelase Enter Customer Code",
         },
         customer_alias: {
-            required: "Please enter customer alias",
+            required: "Please Enter Customer Alias",
         },
         billing_address: {
             required: "Please Enter Billing Address",
@@ -179,6 +176,16 @@ $("#formValidate").validate({
             required: "Please Enter Billing Status",
 
         },
+        billing_location:{
+            required: "Please select location from dropdown",
+        },
+        billing_latitude:{
+            required: "Please select location from dropdown",
+        },
+        billing_longitude:{
+            required: "Please select location from dropdown",
+        },
+        
         contact_person: {
             required: "Please Enter Contact Person",
 
@@ -192,18 +199,6 @@ $("#formValidate").validate({
         },
         billing_mobile: {
             required: "Please Enter Billing Mobile",
-
-        },
-        billing_location: {
-            required: "Please enter location",
-
-        },
-        billing_latitude: {
-            required: "Please select location from dropdown",
-
-        },
-        billing_longitude: {
-            required: "Please select location from dropdown",
 
         },
         sales_person: {

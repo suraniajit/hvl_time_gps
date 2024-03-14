@@ -1,7 +1,9 @@
 
-$("#formValidate").validate({
+$("#contact_us").validate({
     rules: {
-
+        country_id: {
+            required: true,
+        },
         state_name: {
             required: {
                 depends: function () {
@@ -9,37 +11,34 @@ $("#formValidate").validate({
                     return true;
                 }
             },
-                remote: {
-                    url: "/state/editvalidname",
-                        type: "get",
-                    data: {
-                        id: function () {
-                            return $('#formValidate :input[name="state_id"]').val();
-                        }
+            remote: {
+                url: "/hrms/state/validname",
+                type: "get",
+                data: {
+                    _token: function () {
+                        return "{{csrf_token()}}"
+                    },
+                    id: function ()
+                    {
+                        return $('#contact_us :input[name="country_id"]').val();
                     }
                 }
+            }
         },
         is_active: {
             required: true,
         }
     },
     messages: {
-
+        country_id: {
+            required: "Please Select Country First"
+        },
         state_name: {
-            required: "Please Enter State Name",
-            remote: "Record Already Exist"
+            required: "Please Enter Country Name",
+            remote: "This State Name Already Exist In These Country"
         },
         is_active: {
             required: "Please Select Status",
-        }
-    },
-    errorElement: 'div',
-    errorPlacement: function (error, element) {
-        var placement = $(element).data('error');
-        if (placement) {
-            $(placement).append(error)
-        } else {
-            error.insertAfter(element);
         }
     }
 });

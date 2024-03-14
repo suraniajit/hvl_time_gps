@@ -628,6 +628,7 @@ Route::get('pause_stop_watch', 'StopWatchController@pauseDay')->name('pause_stop
 Route::get('stop_stop_watch', 'StopWatchController@stopDay')->name('stop_stop_watch');
 Route::get('get_today_time_counter/{employee_id}', 'StopWatchController@getTodayWorkingTime')->name('get_time_counter');
 Route::post('location_sync', 'StopWatchController@syncLocation')->name('location_sync');
+Route::get('get_employee_location', 'StopWatchController@getCurrentEmployeeLocation')->name('get_employee_location');
 
 
 

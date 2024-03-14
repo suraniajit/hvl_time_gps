@@ -15,19 +15,11 @@ function goBack() {
 }
 
 $(document).ready(function () {
-
-
-
     if ($('.collapsible').collapsible()) {
         $('.collapsible').collapsible()
     }
 
-
-
 //    $('.collapsible').dropdown();
-
-
-
     $('.progress').fadeIn('slow', function () {
         $('.progress').delay(1500).fadeOut();
     });
@@ -73,33 +65,7 @@ $(document).ready(function () {
 //                    break;
             }
         });
-//        swal("Are you sure you want to logout?", {
-//            confirmButtonColor: '#3085d6',
-//            cancelButtonColor: '#d33',
-//            confirmButtonText: 'OK',
-//            closeOnConfirm: true,
-//            closeOnCancel: true,
-//            buttons: {
-//                cancel: "Cancel",
-//                catch : {
-//                    text: "Logout",
-//                    value: "catch",
-//                },
-////                defeat: true,
-//            },
-//        }).then((value) => {
-//            switch (value) {
-//                case "catch":
-////                    swal("Successful!", "Logging Out", "success");
-//                    window.location.href = "/user-logout";
-//                    break;
-//                default:
-////                    swal("Got away safely!");
-////                    break;
-//            }
-//        });
     });
-
     var updateDropdown = function (id_ele) {
         var elem = document.getElementById(id_ele);
         var instance = M.Dropdown.getInstance(elem);
@@ -109,8 +75,6 @@ $(document).ready(function () {
             instance.recalculateDimensions();
         }
     }
-
-
-
 });
+
  

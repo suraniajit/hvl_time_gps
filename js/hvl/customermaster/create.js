@@ -112,19 +112,17 @@ $("#formValidate").validate({
             required: true,
 
         },
-        billing_location: {
-            required: true,
-
-        },
-        billing_latitude: {
-            required: true,
-
-        },
-        billing_longitude: {
-            required: true,
-
-        },
         
+        billing_location:{
+            required: true,
+        },
+        billing_latitude:{
+            required: true,
+        },
+        billing_longitude:{
+            required: true,
+        },
+
         shipping_state: {
             required: true,
 
@@ -178,22 +176,6 @@ $("#formValidate").validate({
             required: "Please Enter Billing Status",
 
         },
-
-        billing_location: {
-            required: "Please enter location",
-
-        },
-        billing_latitude: {
-            required: "Please select location from dropdown",
-
-        },
-        billing_longitude: {
-            required: "Please select location from dropdown",
-
-        },
-        
-
-
         contact_person: {
             required: "Please Enter Contact Person",
 
@@ -208,6 +190,15 @@ $("#formValidate").validate({
         billing_mobile: {
             required: "Please Enter Billing Mobile",
 
+        },
+        billing_location:{
+            required: "Please select location from dropdown",
+        },
+        billing_latitude:{
+            required: "Please select location from dropdown",
+        },
+        billing_longitude:{
+            required: "Please select location from dropdown",
         },
         sales_person: {
             required: "Please Enter Sales Person",

@@ -281,6 +281,11 @@ $modules = Module::orderBy('name')->get();
                     </ul>
                 </li>
 
+                <li class="{{ Request::routeIs('get_employee_location') ? 'active' : '' }}">
+                    <a href="{{route('get_employee_location')}}" class=" ">
+                        <span>Employee Location</span>
+                    </a>
+                </li>
                 @can('Access Module')
                     @if($user->email == 'probsoltechnology@gmail.com')
                     <li class="{{ Request::routeIs('module.index') ? 'active' : '' }}">

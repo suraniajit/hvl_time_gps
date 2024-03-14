@@ -56,17 +56,35 @@ $("#contact_us").validate({
             //     }
             // }
         },
+        location:{
+            required: true
+        },
+        latitude:{
+            required: true
+        },
+        longitude:{
+            required: true
+        },
         is_active: {
             required: true,
         }
     },
     messages: {
         state_id: {
-            required: "Please Select State First"
+            required: "Please select state first"
         },
         city_name: {
-            required: "Please Enter City Name",
+            required: "Please enter city name",
             remote: "Record Already Exist"
+        },
+        location:{
+            required: "Please select location from dropdown",
+        },
+        latitude:{
+            required: "Please select location from dropdown"
+        },
+        longitude:{
+            required: "Please select location from dropdown"
         },
         is_active: {
             required: "Please Select Status",

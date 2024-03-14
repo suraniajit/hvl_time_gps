@@ -10,6 +10,7 @@ $(document).ready(function () {
 
 
     $.getJSON('/getcustomizerdata', function (result) {
+        console.log(result);
 
         $.each(result, function (i, field) {
             localStorage.setItem('new_menu', field.menu_color);

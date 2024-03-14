@@ -9,7 +9,7 @@ use Session;
 use App\Helpers\Helper;
 use App\EmployeesLocationHistory;
 use App\EmployeesCurrentLocation;
-
+use App\Employee;
 // use 
 class StopwatchController extends Controller{
   
@@ -157,5 +157,24 @@ class StopwatchController extends Controller{
         $employees_current_location->lat = $request->latitude;
         $employees_current_location->lang = $request->longitude;
         $employees_current_location->save();
+    }
+    public function getCurrentEmployeeLocation(){
+        $user = Auth::user();
+        if($user->hasRole('administrator')){
+            $employee_id_array = Employee::pluck('id')->toArray();
+        }else{
+            $employee = Auth::user()->employee()->first();
+            if($employee){
+                $employee_id_array = Employee::where('manager_id',$employee->id)->pluck('id')->toArray();
+            }
+        }
+        $employee_current  = new EmployeesCurrentLocation();
+        $employee_current_location = $employee_current->whereIN('employee_id',$employee_id_array)
+            ->where('employees_current_position.location_date',date('Y-m-d'))
+            ->join('employees','employees_current_position.employee_id' ,'employees.id')
+            ->select(['employees.Name','location_time','lat','lang'])
+        ->get()->toArray();
+       
+        return view('location.employee_current_location')->with(['employee_current_location'=>$employee_current_location]);
     }
 }

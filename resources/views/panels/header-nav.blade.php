@@ -15,10 +15,10 @@
                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <li>
                         <span class="row" style="margin:10px">
-                            <div class="brand-text d-none d-md-inline-block mt-2">
+                            <div class="brand-text  d-md-inline-block mt-2">
                                 <strong class="_clock_watch mr-2" style="color: yellow"></strong>
                             </div>
-                            <div class="brand-text d-none d-md-inline-block mt-2">
+                            <div class="brand-text  d-md-inline-block mt-2">
                                 <a href="{{route('start_stop_watch')}}" 
                                             class="btn btn-primary rounded-pill pull-right mr-2"
                                             style="display:none" 
@@ -26,7 +26,7 @@
                                     <i class="fa fa-sharp fa-play"></i>
                                 </a>
                             </div>
-                            <div class="brand-text d-none d-md-inline-block mt-2">
+                            <div class="brand-text  d-md-inline-block mt-2">
                                 <a href="{{route('pause_stop_watch')}}"  
                                         class="btn btn-secondary rounded-pill pull-right mr-2" 
                                         id="__pause_clock" 
@@ -34,7 +34,7 @@
                                     <i class="fa fa-pause" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            <div class="brand-text d-none d-md-inline-block mt-2">
+                            <div class="brand-text  d-md-inline-block mt-2">
                                 <button   
                                     class="btn btn-primary rounded-pill pull-right mr-2" 
                                     style="display:none"

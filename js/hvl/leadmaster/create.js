@@ -4,10 +4,6 @@ $("#formValidate").validate({
     rules: {
         company_type: {
             required: true,
-            // remote: {
-            //     url: "/hrms/employee_type/validname",
-            //     type: "get",
-            // }
         },
         compnay_name: {
             required: true,
@@ -16,67 +12,58 @@ $("#formValidate").validate({
             required: true,
         },
         email: {
-            required: true,
             email:true,
-
         },
         phone: {
-            // required: true,
+            required: true,
 
         },
-        flag:{
-            proposalcheck:true,
-        },
+        // flag:{
+        //     proposalcheck:true,
+        // },
 
         employee: {
             required: true,
 
         },
-        owner: {
-            required: true,
+        // owner: {
+        //     required: true,
 
-        },
+        // },
         create_date: {
             required: true,
 
         },
-        follow_date: {
-            required: true,
-
-        },
-        status: {
-            required: true,
-        },
-        rating: {
-            required: true,
-
-        },
-        lead_source: {
-            required: true,
-
-        },
-        industry: {
-            required: true,
-
-        },
-        address: {
-            required: true,
-
-        },
-        comment: {
-            required: true,
-
-        },
+        // follow_date: {
+        //     required: true,
+        // },
+        // status: {
+        //     required: true,
+        // },
+        // rating: {
+        //     required: true,
+        // },
+        // lead_source: {
+        //     required: true,
+        // },
+        // industry: {
+        //     required: true,
+        // },
+        // address: {
+        //     required: true,
+        // },
+        // comment: {
+        //     required: true,
+        // },
         revenue: {
-            required: true,
+            // required: true,
             minlength:4,
             digits: true,
-
         },
         
-        lead_size: {
-            required: true,
-        },
+        // lead_size: {
+        //     required: true,
+        // },
         is_active: {
             required: true,
         }

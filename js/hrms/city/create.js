@@ -5,7 +5,7 @@ $('#country_id').change(function () {
     if (cid) {
         $.ajax({
             type: "get",
-            url: "/city/getstate",
+            url: "/hrms/city/getstate",
             data: {
                 id: cid
             },
@@ -41,27 +41,19 @@ $("#formValidate").validate({
                     return true;
                 }
             },
-            remote: {
-                url: "/city/validname",
-                type: "get",
-                data: {
-                    _token: function () {
-                        return "{{csrf_token()}}"
-                    },
-                    country_id: function ()
-                    {
-                        return $('#contact_us :input[name="country_id"]').val();
-                    },
-                    state_id: function ()
-                    {
-                        return $('#contact_us :input[name="state_id"]').val();
-                    }
-                }
-            }
+        },
+         location:{
+            required: true
+        },
+        latitude:{
+            required: true
+        },
+        longitude:{
+            required: true
         },
         is_active: {
             required: true,
-        }
+        },
     },
     messages: {
         country_id: {
@@ -71,8 +63,17 @@ $("#formValidate").validate({
             required: "Please Select State First"
         },
         city_name: {
-            required: "Please Enter City Name",
-            remote: "Record Already Exist"
+            required: "Please enter city name",
+            remote: "This City Name Already Exist In These State"
+        },
+        location:{
+            required: "Please select location from dropdown",
+        },
+        latitude:{
+            required: "Please select location from dropdown"
+        },
+        longitude:{
+            required: "Please select location from dropdown"
         },
         is_active: {
             required: "Please Select Status",

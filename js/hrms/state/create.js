@@ -6,6 +6,9 @@
 $(document).ready(function () {
     $("#formValidate").validate({
         rules: {
+            country_id: {
+                required: true,
+            },
             state_name: {
                 required: {
                     depends: function () {
@@ -14,7 +17,7 @@ $(document).ready(function () {
                     }
                 },
                 remote: {
-                    url: "/state/validname",
+                    url: "/hrms/state/validname",
                     type: "get",
                     data: {
                         _token: function () {
@@ -22,7 +25,7 @@ $(document).ready(function () {
                         },
                         id: function ()
                         {
-                            return $('#formValidate :input[name="state_id"]').val();
+                            return $('#formValidate :input[name="country_id"]').val();
                         }
                     }
                 }
@@ -32,14 +35,16 @@ $(document).ready(function () {
             }
         },
         messages: {
+            country_id: {
+                required: "Please Select Country"
+            },
             state_name: {
-                required: "Please Enter State Name",
-                remote: "Record Already Exist"
+                required: "Please Enter Country Name",
+                remote: "This State Name Already Exist In These Country"
             },
             is_active: {
                 required: "Please Select Status",
-            }
-        },
+            },
             errorElement: 'div',
             errorPlacement: function (error, element) {
                 var placement = $(element).data('error');
@@ -49,5 +54,6 @@ $(document).ready(function () {
                     error.insertAfter(element);
                 }
             }
+        }
     });
 });
